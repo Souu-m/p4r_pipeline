@@ -1,0 +1,11 @@
+6,5693
+
+
+
+6,5693,2015-09-17 23:35:18,5.0,Cute shop for boys and some girls.  Offering clothing or very little clothing for the Mass Ave type of guy or gal. You may remember it from Broad Ripple.
+                              The owner is a very nice guy.
+
+6,5693,5.0,1973,[]
+
+
+here i think we had LLM issue, the review mentionned "The owner is a very nice guy" which refer to service but LLM didnt detect it, maybe llm wasnt powerful or smth

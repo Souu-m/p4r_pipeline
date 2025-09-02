@@ -1,0 +1,9 @@
+embeddings.model  is the one that gonna encode our item profiles
+
+projection.py is file that gonna project the encoded embeddings into small embeddings to use for our model
+
+
+print_pt_file is only to see the item_embeddings.pt  (pt file contain dictionnary that has key and value  , the key represent item id and the value of the key is the embeddings,  the keys are sorted since i sorted item profiles before)
+
+
+PS : i have sorted bussiness_df in the model that generate item profiles, so i think we dont have to sort it again,   you can check for safety in case 

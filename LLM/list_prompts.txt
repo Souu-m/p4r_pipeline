@@ -1,0 +1,33 @@
+# Updated prompt template for batch processing
+PROMPT_labels_POLARITY_BATCH = (
+    "You are given the following aspect vocabulary:\n<vocab>\n\n"
+    "Here are multiple product reviews:\n<reviews>\n\n"
+    "For EACH review, identify which aspects from the vocabulary are mentioned and their sentiment.\n"
+    "For each review, output the results in the following format:\n"
+    "Review X - aspects: [aspect1, aspect2, aspect3]\n"
+    "Review X - scores: {\"aspect1\": \"positive\", \"aspect2\": \"neutral\", \"aspect3\": \"negative\"}\n\n"
+    "Where X is the review number. Only include aspects that are actually mentioned in the review."
+)
+
+PROMPT_labels_scores_POLARITY_BATCH = (
+    "You are given the following aspect vocabulary:\n<vocab>\n\n"
+    "Here are multiple product reviews:\n<reviews>\n\n"
+    "For EACH review, identify which aspects from the vocabulary are mentioned.\n"
+    "For each review, output the results in the following format:\n"
+    "Review X - aspects: [aspect1, aspect2, aspect3]\n"
+    "Review X - scores: {\"aspect1\": \"positive\", \"aspect2\": \"neutral\", \"aspect3\": \"negative\"}\n"
+    "Review X - ratings: {\"aspect1\": 4, \"aspect2\": 3, \"aspect3\": 1}\n\n"
+    "Use this rating scale: 1-2=negative, 3=neutral, 4-5=positive. Where X is the review number."
+    "Only include aspects that are actually mentioned in the review."
+)
+# this return discret scores for aspect instead of continous
+PROMPT_scores_discret_POLARITY_BATCH = (
+    "You are given the following aspect vocabulary:\n<vocab>\n\n"
+    "Here are multiple product reviews:\n<reviews>\n\n"
+    "For EACH review, identify which aspects from the vocabulary are mentioned.\n"
+    "For each review, output the results in the following format:\n"
+    "Review X - aspects: [aspect1, aspect2, aspect3]\n"
+    "Review X - scores: {\"aspect1\": 4, \"aspect2\": 3, \"aspect3\": 1}\n\n"
+    "Use ratings: 1-2=negative, 3=neutral, 4-5=positive. Where X is the review number."
+    "Only include aspects that are actually mentioned in the review."
+)
