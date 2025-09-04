@@ -42,7 +42,7 @@ class SENGR_GCN(nn.Module):
         
         # Load semantic embeddings if provided
 ######### if you want to test without semantic embeddings just set semantic_embeddings_path to none   ############
-        semantic_embeddings_path=r'PFE_Aspects\models\projected_item_embeddings_64.pt'
+        semantic_embeddings_path=r'models\projected_item_embeddings_64.pt'
         if semantic_embeddings_path:
             print("Loading semantic embeddings from:", semantic_embeddings_path)
             self._load_semantic_embeddings(semantic_embeddings_path)

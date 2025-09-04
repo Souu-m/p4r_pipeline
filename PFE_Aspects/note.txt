@@ -1,11 +1,10 @@
-6,5693
+IF THERE IS ANY ISSUE 
+JUST UPDATE DATA_UTILS PATH--> def load_preprocessed_data(save_dir="Datasets\preprocessed"):
+ACCORDING TO YOUR RELATED PATH 
 
 
+AND FOR MODELS_CLEAN
+update semantic_embeddings_path=r'models\projected_item_embeddings_64.pt' PATHa
+according to ur related PATH
 
-6,5693,2015-09-17 23:35:18,5.0,Cute shop for boys and some girls.  Offering clothing or very little clothing for the Mass Ave type of guy or gal. You may remember it from Broad Ripple.
-                              The owner is a very nice guy.
-
-6,5693,5.0,1973,[]
-
-
-here i think we had LLM issue, the review mentionned "The owner is a very nice guy" which refer to service but LLM didnt detect it, maybe llm wasnt powerful or smth
+click droit takhjrlk copy relative path 

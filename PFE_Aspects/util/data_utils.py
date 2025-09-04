@@ -150,7 +150,7 @@ def get_pyg_data_objects(edge_index, edge_weight, num_nodes=None):
     )
 
 #Datasets/preprocessed(restaurant)
-def load_preprocessed_data(save_dir="PFE_Aspects\Datasets\preprocessed"):
+def load_preprocessed_data(save_dir="Datasets\preprocessed"):
     """
     Load preprocessed data from the specified directory.
     """

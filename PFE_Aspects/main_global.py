@@ -97,8 +97,8 @@ def main_global(config): # run original graph which mean global mode (without as
     print("embedding size",config.EMBEDDING_DIM)
     print("number of layers",config.NUM_LAYERS)
     # Prepare data
-    ui_edges, ui_weights, social_edges_list, n_users, n_items, builder,review_df = prepare_data(config)
-    train_data, val_data, test_data = split_and_prepare_data(ui_edges,ui_weights,social_edges_list ,builder, config,n_users, n_items,review_df)
+    ui_edges, ui_weights, social_edges_list, n_users, n_items, builder = prepare_data(config)
+    train_data, val_data, test_data = split_and_prepare_data(ui_edges,ui_weights,social_edges_list ,builder, config,n_users, n_items)
     
     # Train and evaluate
     model, test_metrics = train_and_evaluate(
