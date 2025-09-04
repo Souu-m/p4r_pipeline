@@ -8,7 +8,7 @@ from util.evaluation_utils import evaluate_model
 
 
 def train_model(model, optimizer, train_loader, val_data, criterion, config, n_users,
-                num_epochs, patience, mode, aspect_name=None, aspect_data_dict_train=None,aspect_data_dict_val=None):
+                num_epochs, patience, aspect_name=None, aspect_data_dict_train=None,aspect_data_dict_val=None):
     """
     Train the GCN model with early stopping - now supports both global and aspect training
     
@@ -29,10 +29,8 @@ def train_model(model, optimizer, train_loader, val_data, criterion, config, n_u
     min_delta = 1e-4
     
     # Print training mode
-    if mode == 'aspects' :
-        print(f"\nTraining aspect: {aspect_name}")
-    else:
-        print("\nTraining global model")
+
+    print("\nTraining global model")
     
     for epoch in range(num_epochs):
         model.train()
@@ -54,8 +52,7 @@ def train_model(model, optimizer, train_loader, val_data, criterion, config, n_u
             # Handle prediction based on mode
             predictions = model.predict_base(
                     ui_user_indices, ui_item_indices,
-                    data,
-                    mode='global'
+                    data
                 ).squeeze()
             
             loss = criterion(predictions, data.y[ui_mask])
@@ -65,13 +62,11 @@ def train_model(model, optimizer, train_loader, val_data, criterion, config, n_u
         
         train_loss = total_loss / len(train_loader)
         train_losses.append(train_loss)
-        
-        
+
         val_metrics = evaluate_model(
-                model, val_data, data,n_users,
-                k=config.k, threshold=config.Threshold
-            )
-            
+                model, val_data, train_data=data,
+                k=config.k, threshold=config.Threshold,n_users=n_users
+            ) 
         val_loss = val_metrics['loss']
         val_rmse = val_metrics['rmse']
         val_losses.append(val_loss)

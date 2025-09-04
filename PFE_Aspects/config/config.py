@@ -13,7 +13,7 @@ class Config:
     #USER_DATA_PATH = r"D:\PFE_CODE\PFE_Aspects\Datasets\YelpRestaurants\yelp_academic_dataset_user_restaurants.csv"
     #REVIEW_DATA_PATH = r"D:\PFE_CODE\PFE_Aspects\Datasets\YelpRestaurants\yelp_academic_dataset_review_restaurants.csv"
 
-    DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu' #if available 
+    DEVICE = 'gpu' if torch.cuda.is_available() else 'cpu' #if available 
     SEED = 14 # Random seed for reproducibility
     # Aspect-specific configuration
     USE_ASPECT_EMBEDDINGS = False
@@ -37,7 +37,7 @@ class Config:
     GAMMA = 0.9
     # Model configuration
     EMBEDDING_DIM = 64
-    NUM_LAYERS = 1
+    NUM_LAYERS = 2
     LEARNING_RATE = 0.01
     
     # Training configuration

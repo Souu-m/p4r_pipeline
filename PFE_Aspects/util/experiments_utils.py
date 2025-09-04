@@ -13,7 +13,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from graph_builder import HeterogeneousGraphBuilder
-from models.models import SENGR_GCN
+from models.models_clean import SENGR_GCN
 from preprocessing import Preprocessor
 from torch_geometric.loader import DataLoader
 from util.data_utils import (get_pyg_data_objects, load_data,

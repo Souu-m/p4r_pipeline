@@ -9,7 +9,7 @@ import torch.nn as nn
 import torch.optim as optim
 import random
 from config.config import Config
-from models.models import SENGR_GCN
+from models.models_clean import SENGR_GCN
 from torch_geometric.loader import DataLoader
 
 
@@ -66,7 +66,7 @@ def train_and_evaluate(config, train_data, val_data, test_data, n_users, n_items
         transformer_layers=transformer_layers,
         transformer_heads=transformer_heads,
         use_edge_features=config.USE_EDGE_FEATURES,
-        device=config.DEVICE
+        device=config.DEVICE,
     ).to(config.DEVICE) 
 
     optimizer = optim.Adam(model.parameters(), lr=config.LEARNING_RATE)
@@ -82,12 +82,11 @@ def train_and_evaluate(config, train_data, val_data, test_data, n_users, n_items
         config,
         n_users=n_users,
         num_epochs=config.NUM_EPOCHS, 
-        patience=config.PATIENCE,
-        mode='global'
+        patience=config.PATIENCE
     )
     
     print("\n=== Evaluating on test set ===")
-    test_metrics = evaluate_model(model, test_data,train_data, k=config.k, threshold=config.Threshold, n_users=n_users)
+    test_metrics = evaluate_model(model, test_data,train_data=train_data ,k=config.k, threshold=config.Threshold, n_users=n_users)
     
     return model, test_metrics
 
@@ -118,6 +117,6 @@ if __name__ == "__main__":
     set_seed(config.SEED)  # Set random seed for reproducibility
     print("Using device:", config.DEVICE)
 
-    # start  with embedding_dim=64, num_layers=1  then when results imporves inchlh try with embedding_dim=64, num_layers=2
+    # start  with embedding_dim=64, num_layers=2  then when results imporves inchlh try with embedding_dim=64, num_layers=2
     model, metrics = main_global(config) # train and evaluate the global model (Base model with original graph that we aim to improve with aspects)
 

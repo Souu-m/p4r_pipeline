@@ -28,7 +28,7 @@ def evaluate_model(model, data,train_data,n_users ,k=20, threshold=3.5):
     true_ratings = data.y[ui_mask].cpu().numpy()
 
     with torch.no_grad():
-        predicted_ratings = model.predict_base(ui_user_indices, ui_item_indices, train_data,mode='global').squeeze().cpu().numpy()
+        predicted_ratings = model.predict_base(ui_user_indices, ui_item_indices, train_data).squeeze().cpu().numpy()
 
 
     rmse = np.sqrt(mean_squared_error(true_ratings, predicted_ratings))

@@ -19,7 +19,7 @@ from util.data_utils import load_preprocessed_data
 
 
 def save_interaction_splits(train_edges, train_weights, val_edges, val_weights, 
-                           test_edges, test_weights, save_dir="Project/Datasets/splits"):
+                           test_edges, test_weights, save_dir="PFE_Aspects\Project\Datasets\splits"):
     """Save interaction splits to text files"""
     os.makedirs(save_dir, exist_ok=True)
     
@@ -112,7 +112,7 @@ def prepare_data(config, cache_dir="Project/Datasets/cache"):
     n_items = business_df['item_id'].nunique()
     
     builder = HeterogeneousGraphBuilder(n_users, n_items)
-    splits_dir = "Project/Datasets/splits"
+    splits_dir = "PFE_Aspects\Project\Datasets\splits"
     ratings_file = os.path.join(splits_dir, "ratings.txt")
     if not all(os.path.exists(os.path.join(splits_dir, f)) 
             for f in ["train.txt", "valid.txt", "test.txt"]):
