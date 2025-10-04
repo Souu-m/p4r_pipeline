@@ -7,30 +7,28 @@ Profile Generation: A Large Language Model (LLM) transforms raw item metadata (e
 Embedding & Projection: The textual profiles are converted into high-dimensional vectors (embeddings), which are then projected into compact, optimized features for the final recommendation model.
 
 - Repository Structure and Data Flow
-The project is divided into two distinct processing stages, 
-each with its own folder, reflecting the recommended code split.
 
+The project is divided into two distinct processing stages, each with its own folder, reflecting the recommended code split.
 
-1- Profile Generation Folder (p4r_profile_generation/)
-*****STAGE 1****
+### Stage 1: Profile Generation (`p4r_profile_generation/`)
 
-p4r_profile_generation/
-├── src/
-│   ├── generate_item_profiles.py # The script that takes metadata and generate profiles of it
-│   └── __init__.py               # LLM Initialization and API calls
-├── outputs/
-│   └── business_profiles.json    # LLM-Generated Text Profiles (Input for Stage 2)
-└── business_df.csv             #  INPUT DATA (Raw Item Metadata)
+| File/Folder | Purpose | I/O |
+| :--- | :--- | :--- |
+| **`business_df.csv`** | **INPUT DATA:** Raw item metadata. | In |
+| `src/generate_item_profiles.py` | Main script orchestrating LLM calls for profile generation. | Code |
+| `src/__init__.py` | Handles LLM Initialization and API connectivity. | Code |
+| `outputs/business_profiles.json` | **OUTPUT:** LLM-generated Item Profiles (Input for Stage 2). | Out |
 
-*****STAGE 2****
-p4r_encode_text_to_embedding/
-├── embeddings_model.py # Converts the textual Item Profiles (from stage1), 
-│                       # into high-dimensional (D=768) semantic vector embeddings using the Gemini API embedding model.
-│  
-│   
-├── projection.py   # Reduces the dimensionality of the high-dimensional embeddings to a smaller vector size, typically for memory and efficiency in the final recommendation model.
-│                   # uses a Fully Connected (FC) layer with an optional ReLU activation for optimization.
-└── business_profiles.json          #  INPUT DATA (LLM-Generated Text Profiles FROM STAGE1)
+***
+
+### Stage 2: Embedding and Projection (`p4r_textual_embedding/`)
+
+| File/Folder | Purpose | Details |
+| :--- | :--- | :--- |
+| **`business_profiles.json`** | **INPUT:** Textual Item Profiles from Stage 1. | In |
+| `encode_profiles.py` | Converts textual profiles into **high-dimensional semantic vectors** ($\text{D}=768$). | Code |
+| `projection.py` | **Reduces the dimensionality** of the embeddings. Uses an FC layer with optional $\text{ReLU}$ activation. | Code |
+| `item_embeddings.pt` | **OUTPUT:** Final, projected vectors for the recommender model. | Out |
 
 
 Usage and Execution
