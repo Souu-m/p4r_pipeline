@@ -1,5 +1,5 @@
 # Item Profile Generation and Embedding Pipeline
-## This repository provides an unofficial implementation of the profile generation and embedding methodology described in the research paper "A Prompting-Based Representation Learning Method for Recommendation with Large Language Models" (P4R).
+## This repository provides an unofficial implementation of the profile generation and embedding methodology described in the research paper "[A Prompting-Based Representation Learning Method for Recommendation with Large Language Models](https://arxiv.org/html/2409.16674v3)" (P4R). 
 The pipeline follows the paper's core two-stage approach:
 
 Profile Generation: A Large Language Model (LLM) transforms raw item metadata (e.g., name,city, rating,review_count..) into rich, narrative Item Profiles, creating semantically meaningful textual features.
