@@ -1,8 +1,0 @@
- créé un compte sur console.groq.com pour obtenir une clé API commençant par <gsk_>,  
- choisit le model TEXTE TO TEXTE LLAMA >3,  "llama-3.3-70b-versatile",
- créé un fichier .env à la racine du projet, ajouter le clé optenu par le compte groq, GROQ_API_KEY= <cle du lapi>.
- installé les packages groq python-dotenv pandas 
- executer le main.py
-
-
-

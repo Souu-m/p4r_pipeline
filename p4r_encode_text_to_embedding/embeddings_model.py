@@ -9,7 +9,7 @@ import time
 
 from dotenv import load_dotenv
 
-# Load .env and configure Gemini
+# Load .env and configure Gemini API key
 load_dotenv()
 
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
@@ -33,7 +33,6 @@ def process_batch(batch_data, batch_start_idx):
             model="gemini-embedding-001",
             contents=item_profiles,
             config=types.EmbedContentConfig(output_dimensionality=768)
-            
         )
         
         # Convert to PyTorch float tensors and pair with IDs
@@ -45,7 +44,6 @@ def process_batch(batch_data, batch_start_idx):
         print(f"Processed batch starting at index {batch_start_idx} ({len(batch_data)} items)")
                 
         # Add a delay to prevent rate limiting
-        # Adjust the sleep time as needed, e.g., 1 second per batch
         time.sleep(2)  # Wait for 2 seconds after each batch
         
         return batch_results
@@ -67,7 +65,7 @@ def encode_item_profiles(json_file_path, batch_size=5, max_workers=4):
         Dictionary mapping item_original_id to PyTorch float tensors
     """
     # Load data
-    items = load_item_profiles(json_file_path,limit=10)
+    items = load_item_profiles(json_file_path)
     print(f"Loaded {len(items)} items from {json_file_path}")
     
     # Create batches
@@ -99,24 +97,17 @@ def encode_item_profiles(json_file_path, batch_size=5, max_workers=4):
     
     return all_embeddings
 
-# Usage example
+
 if __name__ == "__main__":
     # Process your item profiles
     embeddings = encode_item_profiles('business_profiles.json', batch_size=4, max_workers=3)
     
-    # Example: Access embedding for a specific item
+    # Display a sample item's embedding (ID, shape, and first few values)
     if embeddings:
         sample_id = list(embeddings.keys())[0]
         print(f"\nSample embedding for item {sample_id}:")
-        
-        
-        
-        
-        
-        
-        
         print(f"Shape: {embeddings[sample_id].shape}")
         print(f"First 5 values: {embeddings[sample_id][:5]}")
     
-    # Save embeddings if needed (PyTorch format)
-    torch.save(embeddings, 'item_embeddings_1.pt')
+    # Save embeddings (PyTorch format)
+    torch.save(embeddings, 'item_embeddings.pt')
